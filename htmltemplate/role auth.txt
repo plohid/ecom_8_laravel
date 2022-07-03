@@ -8,9 +8,9 @@ user table ==========
             $table->rememberToken();
             $table->timestamps();
 ========== role table ====== 
- $table->id();
-            $table->string('name');
-            $table->timestamps();
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
 
 role model ==============
 protected $fillable = [

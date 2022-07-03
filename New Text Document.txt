@@ -1,1 +1,4 @@
 #1 laravel Latest Version Install		done
+    ui auth 
+#2 Multiple Authentication 6.30 min     done
+    role based auth, middleware create , protected  kernel.php (kono middleware create krle, oi middleware k chiniye dite hole, kernel.php file a add kore dite hoy) , 
