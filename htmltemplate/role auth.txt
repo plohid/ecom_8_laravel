@@ -1,0 +1,124 @@
+user table ==========
+ $table->id();
+            $table->string('name');
+            $table->integer('role_id')->default(2);
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+========== role table ====== 
+ $table->id();
+            $table->string('name');
+            $table->timestamps();
+
+role model ==============
+protected $fillable = [
+        'name',  
+    ];
+
+    public function user(){
+        return $this->hasMany('App\User');
+    }
+
+user model ================
+   */
+    protected $fillable = [
+        'name', 'email', 'password','role_id',
+    ];
+
+
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
+
+=================== make middleware ======================== 
+php artisan make:middleware AdminMiddleware
+php artisan make:middleware UserMiddleware
+
+now protected kernel.php file 
+'admin' => \App\Http\Middleware\AdminMiddleware::class,
+'user' => \App\Http\Middleware\UserMiddleware::class,
+
+ ==================== now add below text admin middleware and user middleware ======================
+if (Auth::check() && Auth::user()->role_id == 1) {
+            return $next($request);
+        }else{
+            return redirect()->route('login');
+  }
+
+if (Auth::check() && Auth::user()->role_id == 2) {
+            return $next($request);
+        }else{
+            return redirect()->route('login');
+  }
+
+============ then add RedirectIfAuthenticated.php ================
+ if (Auth::guard($guard)->check() && Auth::user()->role->id == 1 ) {
+            return redirect()->route('admin.dashboard');
+
+        }elseif (Auth::guard($guard)->check() && Auth::user()->role->id == 2) {
+            return redirect()->route('user.dashboard');
+        }else{
+            return $next($request);
+        } 
+
+
+============ now created two controller ========== 
+php artisan make:controller Admin/AdminController
+php artisan make:controller User/UserController
+
+======================add web.php ==============
+
+Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'admin'], function(){
+    Route::get('dashboard','AdminController@index')->name('admin.dashboard');
+});
+
+Route::group(['prefix'=>'user','middleware' =>['user','auth'],'namespace'=>'user'], function(){
+    Route::get('dashboard','UserController@index')->name('user.dashboard');
+});
+
+
+============= now goto loginController and add ======== 
+ protected function redirectTo(){
+        if (Auth()->user()->role_id ==1 ) {
+            return route('admin.dashboard');
+
+        }elseif (Auth()->user()->role_id ==2 ) {
+           return route('user.dashboard');
+        }
+    }
+
+also add this registerController =============
+  protected function redirectTo(){
+            if (Auth()->user()->role_id ==1 ) {
+                return route('admin.dashboard');
+
+            }elseif (Auth()->user()->role_id ==2 ) {
+            return route('user.dashboard');
+            }
+        }
+
+
+
+
+
+
+============ now create two view folder ===========
+admin
+  -> home.blade.php
+user
+  -> home.blade.php
+============== add on admin/adminController And user Controller ==========
+public function index(){
+        return view('admin.home');
+    }
+public function index(){
+        return view('user.home');
+    }
+
+
+
+
+
+
