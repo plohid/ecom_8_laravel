@@ -1,5 +1,18 @@
+new project run : composer update
+if env missing 	: cp .env.example .env
+		  php artisan key:generate
+		  php artisan migrate
+
+
+
+laravel deep concept 
+eloquent, api, migration, mysql event, listener, middleware, request life cycle, service provider, service container, gate policy, 
+
+
 #1 laravel Latest Version Install		done
     ui auth 
-#2 Multiple Authentication 14.30 min     done
+#2 Multiple Authentication              done
     role based auth, middleware create , protected  kernel.php ( middleware create krle, oi middleware k chiniye dite hole, kernel.php file a add kore dite hoy) , 
+#3 Admin Templete Setup 
+    admin-master 5 min  done
 
