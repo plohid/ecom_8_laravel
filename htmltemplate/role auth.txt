@@ -41,6 +41,7 @@ now protected kernel.php file
 'user' => \App\Http\Middleware\UserMiddleware::class,
 
  ==================== now add below text admin middleware and user middleware ======================
+
 if (Auth::check() && Auth::user()->role_id == 1) {
             return $next($request);
         }else{
@@ -53,7 +54,9 @@ if (Auth::check() && Auth::user()->role_id == 2) {
             return redirect()->route('login');
   }
 
+
 ============ then add RedirectIfAuthenticated.php ================
+
  if (Auth::guard($guard)->check() && Auth::user()->role->id == 1 ) {
             return redirect()->route('admin.dashboard');
 
@@ -105,14 +108,18 @@ also add this registerController =============
 
 
 ============ now create two view folder ===========
+
 admin
   -> home.blade.php
+
 user
   -> home.blade.php
+
 ============== add on admin/adminController And user Controller ==========
 public function index(){
         return view('admin.home');
     }
+    
 public function index(){
         return view('user.home');
     }
