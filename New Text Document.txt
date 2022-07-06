@@ -14,5 +14,8 @@ eloquent, api, migration, mysql event, listener, middleware, request life cycle,
 #2 Multiple Authentication              done
     role based auth, middleware create , protected  kernel.php ( middleware create krle, oi middleware k chiniye dite hole, kernel.php file a add kore dite hoy) , 
 #3 Admin Templete Setup 
-    admin-master 5 min  done
+        admin-master                    done
+#4 Fontend Templete Setup               done
+             
+
 
