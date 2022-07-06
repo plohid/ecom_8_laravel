@@ -9,13 +9,15 @@ laravel deep concept
 eloquent, api, migration, mysql event, listener, middleware, request life cycle, service provider, service container, gate policy, 
 
 
-#1 laravel Latest Version Install		done
+#1 laravel Latest Version Install		                                    done
     ui auth 
-#2 Multiple Authentication              done
+#2 Multiple Authentication                                                  done
     role based auth, middleware create , protected  kernel.php ( middleware create krle, oi middleware k chiniye dite hole, kernel.php file a add kore dite hoy) , 
 #3 Admin Templete Setup 
-        admin-master                    done
-#4 Fontend Templete Setup               done
-             
+        admin-master                                                        done
+#4 Fontend Templete Setup                                                   done
+#5 Fontend Templete _ Login, Register ,Forget Password Page Setup   10 min
+
+
 
 
